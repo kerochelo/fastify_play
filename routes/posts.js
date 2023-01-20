@@ -1,4 +1,4 @@
-const {getPosts, getPost, addPost} = require('../controllers/posts')
+const {getPosts, getPost, addPost, deletePost} = require('../controllers/posts')
 
 const Post = {
   type: 'object',
@@ -47,10 +47,25 @@ const postPostOpts = {
   handler: addPost
 }
 
+const deletePostOpts = {
+  schema: {
+    response: {
+      200: {
+        type: 'object',
+        properties: {
+          message: {type: 'string'}
+        }
+      }
+    }
+  },
+  handler: deletePost
+}
+
 function postRoutes(fastify, options, done) {
   fastify.get('/posts', getPostsOpts)
   fastify.get('/posts/:id', getPostOpts)
   fastify.post('/posts', postPostOpts)
+  fastify.delete('/posts/:id', deletePostOpts)
   done()
 }
 

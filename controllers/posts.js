@@ -22,8 +22,16 @@ const addPost = (request, reply) => {
   reply.code(201).send(post)
 }
 
+const deletePost = (request, reply) => {
+  const { id } = request.params
+
+  post = posts.filter(post => {post.id !== id})
+  reply.send({message: `Post ${id} has been deleted`})
+}
+
 module.exports = {
   getPosts,
   getPost,
   addPost,
+  deletePost,
 }
