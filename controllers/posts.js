@@ -25,7 +25,7 @@ const addPost = (request, reply) => {
 const deletePost = (request, reply) => {
   const { id } = request.params
 
-  post = posts.filter(post => {post.id !== id})
+  posts = posts.filter(post => {post.id !== id})
   reply.send({message: `Post ${id} has been deleted`})
 }
 
