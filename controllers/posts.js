@@ -22,6 +22,15 @@ const addPost = (request, reply) => {
   reply.code(201).send(post)
 }
 
+const updatePost = (request, reply) => {
+  const { id } = request.params
+  const { title, body } = request.body
+
+  posts = posts.map(post => (post.id === id ? {id, title, body} : post))
+  post = posts.find((post) => post.id === id)
+  reply.send(post)
+}
+
 const deletePost = (request, reply) => {
   const { id } = request.params
 
@@ -33,5 +42,6 @@ module.exports = {
   getPosts,
   getPost,
   addPost,
+  updatePost,
   deletePost,
 }
